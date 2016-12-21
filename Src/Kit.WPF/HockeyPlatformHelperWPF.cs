@@ -328,17 +328,22 @@ namespace Microsoft.HockeyApp
             }
         }
 
-        /// <summary>
-        /// Gets model.
-        /// </summary>
-        public string Model
+		string _model = null;
+
+		/// <summary>
+		/// Gets model.
+		/// </summary>
+		public string Model
         {
             get
             {
-                //TODO siehe Manufacturer mit "Model"
-                return null;
-            }
-        }
+                return _model;
+			}
+			set
+			{
+				_model = value;
+			}
+		}
 
     }
 #pragma warning restore 1998

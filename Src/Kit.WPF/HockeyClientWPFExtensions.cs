@@ -54,6 +54,15 @@ namespace Microsoft.HockeyApp
             
             return (IHockeyClientConfigurable)@this;
         }
+		public static IHockeyClientConfigurable Configure(this IHockeyClient @this, string identifier, string user, string email, string device, string osVersion)
+		{
+			IHockeyClientConfigurable iHCC = Configure(@this, identifier).SetContactInfo(user, email);
+			HockeyClient hockeyClient = (HockeyClient)HockeyClient.Current;
+			hockeyClient.OsVersion = osVersion;
+			HockeyPlatformHelperWPF platformHelperWPF = (HockeyPlatformHelperWPF)hockeyClient.PlatformHelper;
+			platformHelperWPF.Model = device;
+			return iHCC;
+		}
 
         private static Action<UnhandledExceptionEventArgs> customUnhandledExceptionAction;
         private static Action<UnobservedTaskExceptionEventArgs> customUnobservedTaskExceptionAction;
